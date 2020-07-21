@@ -75,11 +75,6 @@ class GameBlock {
     this.y += this.speedY + this.gravitySpeed;
     this.hitBottom();
     display.innerHTML = ''; 
-    ///console.log({game})
-    // display.innerHTML = JSON.stringify({ 
-    //   y: Math.round(this.y), 
-    //   speed:this.gravitySpeed.toFixed(2)
-    // });
   }
   rockbottom() {
     return game.area.canvas.height - this.height;
