@@ -43,9 +43,13 @@ class GameArea {
       game.block.update();
     }, this.intervalSpeed);        
   }
+  initBlock(block) {
+    this.block = block;
+    console.log(this.block);
+  }
   stop() {
     clearInterval(this.interval);
-  }   
+  }
   clear() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
