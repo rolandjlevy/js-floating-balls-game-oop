@@ -11,24 +11,26 @@
 
 <script>
 
-let myGamePiece;
-let myGameArea;
+let game;
+let display;
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  myGamePiece = new Block(30, 30, 'red', 80, 75);
-  myGameArea = new GameArea(480, 270, 'game-area', 15);
-  const gameAreaCanvas = document.querySelector('.game-area');
-  gameAreaCanvas.addEventListener('mousedown', (e) => {
-    myGamePiece.gravity = -0.2;
+  const area = new GameArea(480, 270, 'game-area', 15);
+  const block = new GameBlock(30, 30, 'red', 80, 75);
+  game = { block, area }
+  const areaCanvas = document.querySelector('.game-area');
+  ['mousedown', 'touchstart'].forEach((event) => {
+    areaCanvas.addEventListener(event, (e) => { game.block.gravity = -0.2; })
   });
-  gameAreaCanvas.addEventListener('mouseup', (e) => {
-    myGamePiece.gravity = 0.1;
+  ['mouseup', 'touchend'].forEach((event) => {
+    areaCanvas.addEventListener(event, (e) => { game.block.gravity = 0.1; })
   });
+  display = document.querySelector('.display');
 });
 
 class GameArea {
   constructor(width, height, className, intervalSpeed) {
-    this.canvas = document.createElement('canvas'),
+    this.canvas = document.createElement('canvas');
     this.canvas.width = width;
     this.canvas.height = height;
     this.canvas.className = className;
@@ -37,8 +39,8 @@ class GameArea {
     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
     this.interval = setInterval(() => {
       this.clear();
-      myGamePiece.newPos();
-      myGamePiece.update();
+      game.block.newPos();
+      game.block.update();
     }, this.intervalSpeed);        
   }
   stop() {
@@ -49,7 +51,7 @@ class GameArea {
   }
 }
 
-class Block {
+class GameBlock {
   constructor(width, height, color, x, y, type) {
     this.type = type;
     this.width = width;
@@ -61,27 +63,38 @@ class Block {
     this.speedY = 0;    
     this.gravity = 0.05;
     this.gravitySpeed = 0;
+    this.rockbottom = 0;
   }
   update() {
-    myGameArea.context.fillStyle = this.color;
-    myGameArea.context.fillRect(this.x, this.y, this.width, this.height);
+    game.area.context.fillStyle = this.color;
+    game.area.context.fillRect(this.x, this.y, this.width, this.height);
   }
   newPos() {
     this.gravitySpeed += this.gravity;
     this.x += this.speedX;
     this.y += this.speedY + this.gravitySpeed;
     this.hitBottom();
+    display.innerHTML = ''; 
+    ///console.log({game})
+    // display.innerHTML = JSON.stringify({ 
+    //   y: Math.round(this.y), 
+    //   speed:this.gravitySpeed.toFixed(2)
+    // });
+  }
+  rockbottom() {
+    return game.area.canvas.height - this.height;
   }
   hitBottom() {
-    const rockbottom = myGameArea.canvas.height - this.height;
-    if (this.y > rockbottom) {
-      this.y = rockbottom;
+    if (this.y > this.rockbottom()) {
+      this.y = this.rockbottom();
       this.gravitySpeed = 0;
     }
   }
 }
 
 </script>
+
+<div class="display"></div>
 
 </body>
 
