@@ -17,6 +17,8 @@ let display;
 document.addEventListener('DOMContentLoaded', (event) => {
   const area = new GameArea(480, 270, 'game-area', 15);
   const block = new GameBlock(30, 30, 'red', 80, 75);
+  // block.init(area);
+  // area.init(block);
   game = { block, area }
   const areaCanvas = document.querySelector('.game-area');
   ['mousedown', 'touchstart'].forEach((event) => {
@@ -43,10 +45,10 @@ class GameArea {
       game.block.update();
     }, this.intervalSpeed);        
   }
-  initBlock(block) {
-    this.block = block;
-    console.log(this.block);
-  }
+  // init(block) {
+  //   this.block = block;
+  //   console.log(this.block);
+  // }
   stop() {
     clearInterval(this.interval);
   }
@@ -67,8 +69,11 @@ class GameBlock {
     this.speedY = 0;    
     this.gravity = 0.05;
     this.gravitySpeed = 0;
-    this.rockbottom = 0;
   }
+  // init(area) {
+  //   this.area = area;
+  //   console.log(this.area);
+  // }
   update() {
     game.area.context.fillStyle = this.color;
     game.area.context.fillRect(this.x, this.y, this.width, this.height);
