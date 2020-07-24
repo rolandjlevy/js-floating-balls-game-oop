@@ -14,7 +14,7 @@
   width: var(--game-width);
   height: var(--game-height);
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: all 1s ease;
 }
 
 .block {
