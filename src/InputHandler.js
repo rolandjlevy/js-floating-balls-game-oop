@@ -2,11 +2,13 @@ class InputHandler {
   constructor(area, balls) {
   ['mousedown', 'touchstart'].forEach(event => {
     area.canvas.addEventListener(event, (e) => { 
-      const rect = e.target.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+      const canvasRect = e.target.getBoundingClientRect();
+      const event = e.touches ? e.touches[0] : e;
+      const mouseX = event.clientX - canvasRect.left;
+      const mouseY = event.clientY - canvasRect.top;
       balls.forEach(ball => {
-        if (mouseX >= ball.x - ball.width && mouseX <= ball.x + ball.width) {
+        if (mouseX >= ball.x - ball.width 
+         && mouseX <= ball.x + ball.width) {
           ball.direction = -2;
           ball.opacity = 1;
         }

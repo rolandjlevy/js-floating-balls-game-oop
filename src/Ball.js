@@ -24,9 +24,13 @@ class Ball {
     this.gravitySpeed += this.gravity * this.direction;
     this.x += this.speedX;
     this.y += this.speedY + this.gravitySpeed;
-    const rockbottom = area.canvas.height - this.height;
-    if (this.y > rockbottom) {
-      this.y = rockbottom;
+    const bottom = area.canvas.height - this.height;
+    if (this.y > bottom) {
+      this.y = bottom;
+      this.gravitySpeed = 0;
+    }
+    if (this.y < this.height) {
+      this.y = this.height;
       this.gravitySpeed = 0;
     }
   }

@@ -9,23 +9,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
       color: 'red', 
       x: 50,
       y: 50,
-      gravity: 0.05
+      gravity: 0.02
+    }),
+    new Ball({ 
+      width: 40, 
+      height: 40, 
+      color: 'green', 
+      x: 130,
+      y: 50,
+      gravity: 0.04
     }),
     new Ball({ 
       width: 50, 
       height: 50, 
-      color: 'green', 
-      x: 150,
-      y: 50,
-      gravity: 0.07
-    }),
-    new Ball({ 
-      width: 70, 
-      height: 70, 
       color: 'blue', 
-      x: 300,
+      x: 230,
       y: 50,
-      gravity: 0.10
+      gravity: 0.06
     })
   ];
 
