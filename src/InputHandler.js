@@ -9,7 +9,7 @@ class InputHandler {
       balls.forEach(ball => {
         if (mouseX >= ball.x - ball.width 
          && mouseX <= ball.x + ball.width) {
-          ball.direction = -2;
+          ball.direction = -5;
           ball.opacity = 1;
         }
       })

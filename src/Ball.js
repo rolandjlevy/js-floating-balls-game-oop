@@ -17,7 +17,7 @@ class Ball {
     area.ctx.globalAlpha = this.opacity;
     area.ctx.fillStyle = this.color;
     area.ctx.beginPath();
-    area.ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI);
+    area.ctx.arc(this.x, this.y, this.width, 0, 2 * Math.PI, true);
     area.ctx.fill();
   }
   newPos(area, deltaTime) {
