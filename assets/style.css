@@ -8,8 +8,8 @@
 
 #game-area {
   --game-width: 300;
-  --game-height: 300;
-  border: 10px solid #ddd;
+  --game-height: 450;
+  border: 0 solid #ddd;
   background-color: #f3f3f3;
   width: var(--game-width);
   height: var(--game-height);
