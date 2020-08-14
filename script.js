@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       color: 'red', 
       x: 50,
       y: 50,
-      gravity: 0.02
+      gravity: 0.03
     }),
     new Ball({ 
       width: 40, 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       color: 'green', 
       x: 130,
       y: 50,
-      gravity: 0.04
+      gravity: 0.05
     }),
     new Ball({ 
       width: 50, 
